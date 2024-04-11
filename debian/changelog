@@ -1,0 +1,6 @@
+mediawiki-page-publish (0.0.1) unstable; urgency=low
+
+  * ci: build for debian (commit 007af09)
+
+ -- L. Jiang <l.jiang.1024@gmail.com>  Fri, 21 Mar 2025 20:06:57 +0800
+

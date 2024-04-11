@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_auto_build:
+	@echo '-------------------- build begin --------------------'
+	mkdir -p ./deb/
+	go build \
+		-o ./deb/usr/bin/mediawiki-page-publish \
+		-mod vendor \
+		-trimpath \
+		-ldflags '-s -w' \
+		.
+	@echo '-------------------- build end --------------------'
+
+override_dh_auto_install:
+	@echo '-------------------- install begin --------------------'
+	mkdir -p debian/mediawiki-page-publish/
+	rsync -a -r --no-i-r --info=progress2 --info=name0 --no-owner --no-group --no-perms \
+		./deb/ \
+		debian/mediawiki-page-publish/
+	@echo '-------------------- install end   --------------------'
+
+override_dh_auto_clean:
+	@echo '-------------------- clean begin --------------------'
+	make clean
+	@echo '-------------------- clean end   --------------------'
+
