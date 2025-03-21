@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -50,10 +51,10 @@ func main() {
 	}
 
 	// Make the request.
-	if err := w.Edit(parameters); err != nil {
-		fmt.Printf("[ERROR] failed to edit, err: %v\n", err.Error())
+	if err := w.Edit(parameters); err != nil && !errors.Is(err, mwclient.ErrEditNoChange) {
+		fmt.Printf("[ERROR] failed to edit page, page: %v, err: %v\n", pageTitle, err.Error())
 		os.Exit(1)
 	}
 
-	fmt.Printf("[INFO] successfully edited %v page\n", pageTitle)
+	fmt.Printf("[INFO] successfully edit page: %v\n", pageTitle)
 }
