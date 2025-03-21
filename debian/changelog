@@ -1,0 +1,6 @@
+mediawiki-page-publish (0.0.1+20250321183738) unstable; urgency=low
+
+  * fix: wrong error report while no changes (commit 2e3a6ce)
+
+ -- L. Jiang <jianglinwei@uniontech.com>  Fri, 21 Mar 2025 18:37:38 +0800
+

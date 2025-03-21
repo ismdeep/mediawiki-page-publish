@@ -1,2 +1,12 @@
 # JetBrains
 /.idea/
+
+# deb
+/deb/
+
+# debian
+/debian/files
+/debian/mediawiki-page-publish.debhelper.log
+/debian/mediawiki-page-publish.substvars
+/debian/mediawiki-page-publish/
+/debian/.debhelper/

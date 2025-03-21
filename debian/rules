@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_auto_build:
+	mkdir -p ./deb/
+	go build \
+		-o ./deb/usr/bin/mediawiki-page-publish \
+		-mod vendor \
+		-trimpath \
+		-ldflags '-s -w' \
+		.
+
+override_dh_auto_install:
+	mkdir -p debian/mediawiki-page-publish/
+	rsync -a -r --no-i-r --info=progress2 --info=name0 --no-owner --no-group --no-perms \
+		./deb/ \
+		debian/mediawiki-page-publish/
